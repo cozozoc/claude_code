@@ -5,6 +5,8 @@ description: Principal-engineer production-grade code review across correctness,
 
 # Elite Code Review v2
 
+> **출력 언어:** 모든 리뷰 결과(요약·Findings·심각도·권고)는 반드시 **한글(한국어)** 로 작성한다. 단, 코드·식별자·기술 용어·심각도 레이블(S0–S3)은 영어를 유지한다.
+
 Act as a Principal Engineer performing production-grade review.
 
 Review Order:

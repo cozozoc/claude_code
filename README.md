@@ -5,6 +5,8 @@ Production-grade code review system, packaged as native **Claude Code skills**.
 Each review type is a skill you can invoke explicitly with `/` (e.g. `/elite-code-review`)
 or that Claude auto-loads based on the task description.
 
+> **출력 언어:** 모든 스킬의 리뷰 결과는 **한글(한국어)** 로 제공됩니다 (코드·기술 용어·심각도 레이블 S0–S3은 영어 유지).
+
 ## Skills
 
 | Skill | Invoke | Purpose |
@@ -14,6 +16,7 @@ or that Claude auto-loads based on the task description.
 | `security-audit` | `/security-audit` | OWASP-based security pass — authn/authz, secrets, injection, deserialization |
 | `performance-review` | `/performance-review` | Performance at scale — hot paths, N+1, allocations, concurrency, caching |
 | `debugging` | `/debugging` | Systematic debugging — reproduce, isolate, root-cause, fix, prevent regression |
+| `modem-l1-review` | `/modem-l1-review` | Modem L1/PHY (baseband) C/C++ domain review — real-time determinism, lock-free/barriers, fixed-point DSP, MMIO/DMA/cache coherency, 3GPP, MISRA, baseband security. Chain after elite-code-review |
 
 ## Repository Structure
 
@@ -27,7 +30,8 @@ or that Claude auto-loads based on the task description.
 │       ├── architecture-review/SKILL.md
 │       ├── security-audit/SKILL.md
 │       ├── performance-review/SKILL.md
-│       └── debugging/SKILL.md
+│       ├── debugging/SKILL.md
+│       └── modem-l1-review/SKILL.md
 ├── prompts/                   # ready-to-paste prompt snippets that drive the skills
 │   ├── review.md
 │   ├── security.md
@@ -101,3 +105,5 @@ For high-stakes changes, run the three-stage chain:
 1. `/elite-code-review` — full code review
 2. `/security-audit` — security pass
 3. `/architecture-review` — architecture pass
+
+For modem L1 / baseband C/C++, chain `/elite-code-review` → `/modem-l1-review`.
