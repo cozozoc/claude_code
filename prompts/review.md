@@ -1,8 +1,8 @@
+# Code Review Prompt
+
 Act as a Principal Engineer.
 
-Review this code using:
-
-- skills/elite-code-review.md
+Use the `elite-code-review` skill.
 
 Assume:
 

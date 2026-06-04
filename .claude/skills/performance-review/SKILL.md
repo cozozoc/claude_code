@@ -1,3 +1,8 @@
+---
+name: performance-review
+description: Performance review at scale — hot paths, N+1 queries, allocations and copies, concurrency contention, memory, and caching strategy. Use when reviewing latency/throughput-sensitive code or hunting performance bottlenecks.
+---
+
 # Performance Review
 
 Act as a Staff Engineer focused on performance at scale.
@@ -8,7 +13,7 @@ Check:
 
 - inefficient loops and quadratic complexity
 - unnecessary allocations
-- excessive object creation
+- excessive object creation and copies
 - redundant computation
 - blocking calls on hot paths
 

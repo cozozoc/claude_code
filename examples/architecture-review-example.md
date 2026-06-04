@@ -1,8 +1,8 @@
+# Architecture Review Example
+
 Review this system design / Pull Request from an architecture perspective.
 
-Use:
-
-- skills/architecture-review.md
+Use the `architecture-review` skill.
 
 Assume system growth of 100x.
 

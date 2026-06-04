@@ -1,3 +1,8 @@
+---
+name: security-audit
+description: Full OWASP-based security audit — authentication, authorization, secrets management, input validation, injection (SQL/command/SSRF/path traversal), insecure deserialization, and unsafe logging. Use when reviewing code for security vulnerabilities or running a security pass on a PR.
+---
+
 # Security Audit
 
 Perform a full OWASP review.

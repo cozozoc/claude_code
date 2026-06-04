@@ -1,8 +1,8 @@
+# Architecture Review Prompt
+
 Act as a Staff+ Architect.
 
-Use:
-
-- skills/architecture-review.md
+Use the `architecture-review` skill.
 
 Assume system growth of 100x.
 

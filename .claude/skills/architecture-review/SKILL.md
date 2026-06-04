@@ -1,3 +1,8 @@
+---
+name: architecture-review
+description: Staff+ architect review of system/service design — bounded contexts, dependency direction, coupling, separation of concerns, scalability, and migration risk. Use when reviewing architecture, a design doc, or evaluating whether a change scales 10x/100x.
+---
+
 # Architecture Review
 
 Act as a Staff+ Architect.

@@ -1,3 +1,8 @@
+---
+name: debugging
+description: Systematic, evidence-driven debugging workflow — reproduce, isolate, root-cause, fix, and prevent regression. Use when investigating a bug, failure, crash, or regression.
+---
+
 # Systematic Debugging
 
 A disciplined, evidence-driven debugging workflow.

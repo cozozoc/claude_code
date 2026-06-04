@@ -1,9 +1,8 @@
+# Performance Review Prompt
+
 Act as a Staff Engineer focused on performance.
 
-Use:
-
-- skills/performance-review.md
-- skills/elite-code-review.md
+Use the `performance-review` and `elite-code-review` skills.
 
 Assume:
 

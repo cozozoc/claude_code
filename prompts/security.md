@@ -1,9 +1,8 @@
+# Security Audit Prompt
+
 Perform a security audit.
 
-Use:
-
-- skills/security-audit.md
-- skills/elite-code-review.md
+Use the `security-audit` and `elite-code-review` skills.
 
 Focus on:
 

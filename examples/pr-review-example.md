@@ -1,9 +1,8 @@
+# PR Review Example
+
 Review this Pull Request.
 
-Use:
-
-- skills/elite-code-review.md
-- skills/security-audit.md
+Use the `elite-code-review` and `security-audit` skills.
 
 Requirements:
 

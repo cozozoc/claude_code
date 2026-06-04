@@ -1,99 +1,103 @@
 # AI Review Pack
 
-Production-grade code review system for AI coding agents.
+Production-grade code review system, packaged as native **Claude Code skills**.
 
-Works with:
+Each review type is a skill you can invoke explicitly with `/` (e.g. `/elite-code-review`)
+or that Claude auto-loads based on the task description.
 
-- Claude Code
-- OpenAI Codex
-- Cursor
-- Gemini CLI
-- OpenHands
+## Skills
 
-## Philosophy
-
-Every code change must be evaluated for:
-
-1. Correctness
-2. Security
-3. Performance
-4. Scalability
-5. Reliability
-6. Maintainability
-7. Observability
-8. Testability
+| Skill | Invoke | Purpose |
+|-------|--------|---------|
+| `elite-code-review` | `/elite-code-review` | Principal-engineer review across 12 dimensions (correctness, memory safety, UB, concurrency, security, reliability, performance, scalability, maintainability, observability, testing, architecture) + C/C++ specifics |
+| `architecture-review` | `/architecture-review` | Staff+ architect review — boundaries, coupling, dependency direction, scalability, migration risk |
+| `security-audit` | `/security-audit` | OWASP-based security pass — authn/authz, secrets, injection, deserialization |
+| `performance-review` | `/performance-review` | Performance at scale — hot paths, N+1, allocations, concurrency, caching |
+| `debugging` | `/debugging` | Systematic debugging — reproduce, isolate, root-cause, fix, prevent regression |
 
 ## Repository Structure
 
-```
-ai-review-pack/
+```text
+.
 ├── README.md
-├── CLAUDE.md
-├── skills/
-│   ├── elite-code-review.md
-│   ├── architecture-review.md
-│   ├── security-audit.md
-│   ├── performance-review.md
-│   └── debugging.md
-├── prompts/
+├── CLAUDE.md                  # global review rules (Principal Engineer behavior)
+├── .claude/
+│   └── skills/
+│       ├── elite-code-review/SKILL.md
+│       ├── architecture-review/SKILL.md
+│       ├── security-audit/SKILL.md
+│       ├── performance-review/SKILL.md
+│       └── debugging/SKILL.md
+├── prompts/                   # ready-to-paste prompt snippets that drive the skills
 │   ├── review.md
 │   ├── security.md
 │   ├── architecture.md
 │   └── performance.md
-└── examples/
+└── examples/                  # worked usage examples
     ├── pr-review-example.md
     └── architecture-review-example.md
 ```
 
 ## Install
 
+Clone the repo. Claude Code automatically discovers skills under `.claude/skills/`
+when you run it from inside the cloned directory:
+
 ```bash
 git clone https://github.com/cozozoc/claude_code.git
+cd claude_code
 ```
 
-Optionally, expose the skills globally for Claude Code:
+To make the skills available in **every** project (user-level), copy them into your
+home skills directory:
 
 ```bash
-git clone https://github.com/cozozoc/claude_code.git ~/.claude/skills/ai-review-pack
+# macOS / Linux
+cp -r claude_code/.claude/skills/* ~/.claude/skills/
+
+# Windows (PowerShell)
+Copy-Item claude_code\.claude\skills\* $HOME\.claude\skills\ -Recurse
 ```
 
 ## Usage
 
-### Claude Code
+### Explicit invocation (`/`)
 
-```
-Review this PR using skills/elite-code-review.md
-```
+In Claude Code, type `/` and pick the skill, or type its name directly:
 
-### Codex
-
-```
-Perform a Staff Engineer review using skills/elite-code-review.md
+```text
+/elite-code-review
+review the staged diff
 ```
 
-### Cursor
+### Automatic invocation
 
-Reference the skill file in your project rules (`.cursor/rules`).
+Just describe the task; Claude loads the matching skill from its `description`:
 
-### Gemini CLI / OpenHands
+```text
+Review this PR for security issues
+```
 
-Paste the relevant `skills/*.md` content into the prompt as the review standard.
+### Combine with prompt snippets
+
+The files in `prompts/` and `examples/` are ready-to-paste prompts that invoke one
+or more skills together — useful for a consistent team workflow.
 
 ## Review Standards
 
-Severity Levels:
+Severity levels (shared across all skills):
 
-- **S0** = Production outage risk
-- **S1** = Security vulnerability
-- **S2** = Major engineering concern
-- **S3** = Minor improvement
+- **S0** — Production outage, data corruption, or system crash
+- **S1** — Security vulnerability, memory corruption, undefined behavior, or race condition
+- **S2** — Major performance, reliability, or maintainability issue
+- **S3** — Minor improvement suggestion
 
-> Code should not be approved if S0 or S1 findings exist.
+> Never approve code containing S0 or S1 findings.
 
 ## Recommended Chain
 
 For high-stakes changes, run the three-stage chain:
 
-1. `prompts/review.md` — Elite code review
-2. `prompts/security.md` — Security audit
-3. `prompts/architecture.md` — Architecture review
+1. `/elite-code-review` — full code review
+2. `/security-audit` — security pass
+3. `/architecture-review` — architecture pass
